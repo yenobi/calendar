@@ -1,8 +1,35 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './index.css';
 import App from './App';
-import registerServiceWorker from './registerServiceWorker';
+import {createStore} from 'redux';
+import Calendar from './Calendar';
+import PropTypes from 'prop-types';
 
-ReactDOM.render(<App />, document.getElementById('root'));
-registerServiceWorker();
+class Provider extends React.Component {
+    getChildContext() {
+        return {
+            store: this.props.store
+        };
+    }
+
+    render() {
+        return this.props.children;
+    }
+}
+Provider.childContextTypes = {
+    store: PropTypes.object
+};
+
+ReactDOM.render(
+    <Provider store={createStore(Calendar)}>
+        <App />
+    </Provider>,
+    document.getElementById('root')
+);
+
+// scheme of store
+// {
+    // showForm: false
+    // events: []
+    // goals: []
+// }

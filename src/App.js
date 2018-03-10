@@ -1,21 +1,40 @@
-import React, { Component } from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React from 'react';
+import Header from './Shared/Header';
+import Aside from './Shared/Aside';
+import PropTypes from 'prop-types';
 
-class App extends Component {
+class App extends React.Component {
+componentDidMount() {
+  const {store} = this.context;
+  store.subscribe(() => {
+    console.log(store.getState());
+  })
+}
   render() {
+    const {store} = this.context;
     return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h1 className="App-title">Welcome to React</h1>
-        </header>
-        <p className="App-intro">
-          To get started, edit <code>src/App.js</code> and save to reload.
-        </p>
+      <div>
+        <Header />
+        <Aside />
+        <main>
+          <div style={{width: '150px', height: '150px', border: '1px solid firebrick'}}>
+          here will be calendar ?
+          <button
+            onClick={() => {
+              store.dispatch({
+                type: 'TOGGLE_FORM'
+              });
+            }}
+          >show form</button>
+          </div>
+        </main>
       </div>
     );
   }
+}
+
+App.contextTypes = {
+  store: PropTypes.object
 }
 
 export default App;
