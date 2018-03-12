@@ -4,7 +4,9 @@ import PropTypes from 'prop-types';
 export default function Header(props, {store}) {
   return (
     <header>
-      <p>header</p>
+      <button type="button">Add event</button>
+      <button type="button">Refresh</button>
+      <input placeholder="search" />
       <p>{store.getState().formVisible}</p>
     </header>
   )
