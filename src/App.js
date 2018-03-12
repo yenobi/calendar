@@ -2,6 +2,7 @@ import React from 'react';
 import Header from './Shared/Header';
 import Aside from './Shared/Aside';
 import PropTypes from 'prop-types';
+import Calendar from './Calendar/Calendar';
 
 class App extends React.Component {
 componentDidMount() {
@@ -16,18 +17,7 @@ componentDidMount() {
       <div>
         <Header />
         <Aside />
-        <main>
-          <div style={{width: '150px', height: '150px', border: '1px solid firebrick'}}>
-          here will be calendar ?
-          <button
-            onClick={() => {
-              store.dispatch({
-                type: 'TOGGLE_FORM'
-              });
-            }}
-          >show form</button>
-          </div>
-        </main>
+        <Calendar />
       </div>
     );
   }

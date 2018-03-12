@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import App from './App';
 import {createStore} from 'redux';
-import Calendar from './Calendar';
+import reducer from './reducer';
 import PropTypes from 'prop-types';
 
 class Provider extends React.Component {
@@ -21,7 +21,7 @@ Provider.childContextTypes = {
 };
 
 ReactDOM.render(
-    <Provider store={createStore(Calendar)}>
+    <Provider store={createStore(reducer)}>
         <App />
     </Provider>,
     document.getElementById('root')
@@ -29,7 +29,8 @@ ReactDOM.render(
 
 // scheme of store
 // {
-    // showForm: false
+    // formVisible: false
+    // currentEventDay: day
     // events: []
     // goals: []
 // }
