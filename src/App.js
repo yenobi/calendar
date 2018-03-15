@@ -9,10 +9,13 @@ componentDidMount() {
   const {store} = this.context;
   store.subscribe(() => {
     console.log(store.getState());
-  })
+  });
+  store.dispatch({
+            type: 'UPDATE_TODAY',
+            today: new Date().getDay()
+        });
 }
   render() {
-    const {store} = this.context;
     return (
       <div>
         <Header />
