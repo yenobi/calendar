@@ -11,9 +11,10 @@ export default class AddEvent extends React.Component {
     };
     
     createEvent = () => {
-        const {store} = this.context;
+        // const {store} = this.context;
         return {
-            day: store.getState().currentEventDay,
+            // day: store.getState().currentEventDay,
+            day: this.props.day,
             text: this.state.text
         };
     };
@@ -30,12 +31,12 @@ export default class AddEvent extends React.Component {
     };
 
     render() {
-        const {store} = this.context;
+        const {day} = this.props;
         return (
             <form onSubmit={this.saveEvent}>
                 <div>
                     <p>Day:</p>
-                    <input placeholder="day" value={store.getState().currentEventDay} readOnly/>
+                    <input placeholder="day" value={day} readOnly/>
                     <p>Text:</p>
                     <textarea placeholder="text" value={this.state.text} onChange={this.handleTextChange}/>
                     <button type="submit">save event</button>

@@ -27,10 +27,19 @@ ReactDOM.render(
     document.getElementById('root')
 );
 
-// scheme of store
-// {
-    // formVisible: false
-    // currentEventDay: day
-    // events: []
-    // goals: []
-// }
+// recap store scheme
+// let state = {
+//     week: [{
+//         day: 'Mon',
+//         date: '01.01'
+//     }, {}],
+//     events: [{
+//         date: '02.01',
+//         text: 'some text'
+//     }, {}],
+//     currentDay: {
+//         day: 'Fri',
+//         date: '05.01'
+//     },
+//     formVisible: false
+// };

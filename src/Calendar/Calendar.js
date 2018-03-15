@@ -2,13 +2,11 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import AddEvent from './AddEvent';
-import Day from './Day';
+import DayContainer from './DayContainer';
 
 const Wrapper = styled.div`
     display: flex;
 `;
-
-const arrMock = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
 
 export default class Calendar extends React.Component {
   componentDidMount() {
@@ -22,14 +20,16 @@ export default class Calendar extends React.Component {
     this.unsubscribe();
   }
 
+  // todo: refactor this function to state dependent expression
   showForm = () => {
-    const {store} = this.context;
-    return store.getState().formVisible ?
-          <AddEvent />
+    const {form} = this.context.store.getState();
+    return form.visible ?
+          <AddEvent day={form.day} />
           : null;
   };
 
   render() {
+    const {store} = this.context;
     return (
     <main>
         <ul>
@@ -38,10 +38,7 @@ export default class Calendar extends React.Component {
             <li>list of events on this day</li>
         </ul>
         <Wrapper>
-          {arrMock.map(day => <Day
-              key={day}
-              day={day}
-              >day</Day>)}
+          {store.getState().week.map(day => <DayContainer day={day} key={day.date} />)}
         </Wrapper>
         {this.showForm()}
     </main>
@@ -52,3 +49,5 @@ export default class Calendar extends React.Component {
 Calendar.contextTypes = {
   store: PropTypes.object
 }
+
+// todo: refactor component to be presentaional + container
