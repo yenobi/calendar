@@ -2,20 +2,13 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import AddEvent from './AddEvent';
-
-const Day = styled.div`
-    width: 50px;
-    height: 50px;
-    border: 2px solid black;
-    border-radius: 2px;
-    margin: 5px;
-`;
+import Day from './Day';
 
 const Wrapper = styled.div`
     display: flex;
 `;
 
-const arrMock = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'];
+const arrMock = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
 
 export default class Calendar extends React.Component {
   componentDidMount() {
@@ -32,13 +25,11 @@ export default class Calendar extends React.Component {
   showForm = () => {
     const {store} = this.context;
     return store.getState().formVisible ?
-          'here should be form'
+          <AddEvent />
           : null;
   };
 
   render() {
-    const {props} = this.props;
-    const {store} = this.context;
     return (
     <main>
         <ul>
@@ -49,12 +40,7 @@ export default class Calendar extends React.Component {
         <Wrapper>
           {arrMock.map(day => <Day
               key={day}
-              onClick={() => (
-                  store.dispatch({
-                      type: 'TOGGLE_FORM',
-                      day
-                  })
-              )}
+              day={day}
               >day</Day>)}
         </Wrapper>
         {this.showForm()}
